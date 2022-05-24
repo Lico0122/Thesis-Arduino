@@ -1,0 +1,45 @@
+#include <Servo.h>
+
+Servo tap_servo;
+int tap_servo_pin =5;
+
+int msensor = A1; // moisture sensor is connected with the analog pin A1 of the Arduino
+int msvalue = 0; // moisture sensor value 
+int led = 13; 
+boolean flag = false; 
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(msensor, INPUT);
+  tap_servo.attach(tap_servo_pin);
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  msvalue = analogRead(msensor);
+  Serial.println(msvalue);
+  
+  if ( (msvalue >= 1000  ) && ( flag == false ) )
+{
+  digitalWrite(led, HIGH); 
+  flag = true; 
+  delay(3000); 
+  tap_servo.write(90);
+}
+ 
+  if ( (msvalue <= 950  ) && ( flag == true ) )
+{
+  digitalWrite(led, LOW);
+  tap_servo.write(135);
+  delay(4000);
+  tap_servo.write(90); 
+  flag = false;
+  delay(1000);
+  flag = true; 
+}
+ 
+  delay(100); 
+}
