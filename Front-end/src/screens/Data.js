@@ -25,10 +25,10 @@ function get(url, parameters) {
 
 const Data = () => {
 
-	const [ plasticWaste, setPlasticWaste ] = useState(80);
-	const [ metalWaste, setMetalWaste ] = useState(35);
-	const [	wetWaste, setWetWaste ] = useState(60);
-	const [ paperWaste, setPaperWaste ] = useState(75);
+	const [ plasticWaste, setPlasticWaste ] = useState(0);
+	const [ metalWaste, setMetalWaste ] = useState(0);
+	const [	wetWaste, setWetWaste ] = useState(0);
+	const [ paperWaste, setPaperWaste ] = useState(0);
 
 
 	useEffect(() => {
